@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-		<my-main></my-main>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-	import MyMain from '@/components/Main.vue'
-	export default{
-		components:{
-			MyMain
-		}
-	}
+import HomePage from "@/components/HomePage.vue";
+export default {
+  components: {
+    HomePage,
+  },
+};
 </script>
 
 <style>

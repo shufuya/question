@@ -1,45 +1,93 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import HomePage from '../components/HomePage.vue'
+import index from '../components/index.vue'
+import Menu from '../components/menu.vue'
+import Mine from '../components/mine.vue'
+import Creation from '../components/Creation.vue'
+import CreateTable from '../components/CreateTable.vue'
+import SingleChoice from '../components/function/SingleChoice.vue'
 Vue.use(VueRouter)
 
 
-const Project = () => import('../views/Project.vue')
-const Find = () => import('../views/Find.vue')
-const Mine = () => import('../views/Mine.vue')
+const Login = () => import('../views/Login.vue')
+const Singin = () => import('../views/Singin.vue')
+const CreatTitle = () => import('../views/CreatTitle.vue')
+const Recycle = () => import('../views/Recycle.vue')
 
-const routes = [
-	{
+const routes = [{
 		path: '/',
-		redirect: '/home'
-	},
-  {
-    path: '/home',
-		name: 'Home',
-    component: Home
-  },
-  {
-    path: '/project',
-    name: 'Project',
-    component: Project
-  },
-	{
-		path: '/find',
-		name: 'Find',
-		component: Find
+		redirect: '/homepage/login'
 	},
 	{
-		path:'/mine',
+		path: '/index',
+		name: 'index',
+		component: index
+	},
+	{
+		path: '/homepage',
+		name: 'HomePage',
+		component: HomePage,
+		children: [{
+				path: '/homepage/login',
+				name: 'Login',
+				component: Login,
+				beforeEnter(to, from, next) {
+					// 在渲染该组件的对应路由被 confirm 前调用
+					// 不！能！获取组件实例 `this`
+					// 因为当守卫执行前，组件实例还没被创建
+					if (window.localStorage.getItem("tokenlo")) next("/index");
+					else next();
+				}
+			},
+			{
+				path: '/homepage/singin',
+				name: 'Singin',
+				component: Singin
+			}
+		]
+	},
+	{
+		path: '/menu',
+		name: 'Menu',
+		component: Menu
+	},
+	{
+		path: '/mine',
 		name: 'Mine',
 		component: Mine
+	},
+	{
+		path: '/creation',
+		name: 'Creation',
+		component: Creation
+	},
+	{
+		path: '/creat-title',
+		name: 'CreatTitle',
+		component: CreatTitle
+	},
+	{
+		path: '/create-table',
+		name: 'CreateTable',
+		component: CreateTable
+	},
+	{
+		path: '/recycle',
+		name: 'Recycle',
+		component: Recycle
+	},
+	{
+		path: '/single-choice',
+		name: 'SingleChoice',
+		component: SingleChoice
 	}
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+	mode: 'history',
+	base: process.env.BASE_URL,
+	routes
 })
 
 export default router
