@@ -72,7 +72,7 @@ export default {
           });
           break;
         case "回收站":
-          this.$router.push("/recycle")
+          this.$router.push("/recycle");
       }
       console.log(actions, " ", index);
     },
@@ -80,7 +80,10 @@ export default {
 };
 </script>
  
-  <style>
+<style>
+.van-search {
+  height: 36px;
+}
 .nav-bar .van-button {
   height: 30px;
 }

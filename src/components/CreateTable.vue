@@ -9,6 +9,7 @@
       show-word-limit
       :border="false"
       required
+      @blur="first"
     />
     <van-row type="flex" justify="center"></van-row>
     <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
@@ -27,8 +28,8 @@
         </van-col>
         <van-col span="6">
           <div class="a2">
-            <img src="../assets/images/填空题.png" />
-            <div class="text">填空题</div>
+            <img src="../assets/images/填空题.png" @click="GapFilling" />
+            <div class="text" @click="GapFilling">填空题</div>
           </div>
         </van-col>
         <van-col span="6">
@@ -63,11 +64,17 @@ export default {
       this.$router.push("/single-choice");
     },
     //创建多选题
-    MultipleChoice(){
-      this.$router.push('#')
+    MultipleChoice() {
+      this.$router.push("/multiple-choice");
+    },
+    GapFilling() {
+      this.$router.push("/gap-filling");
     },
     showPopup() {
       this.show = true;
+    },
+    first() {
+      window.localStorage.setItem("TableTitle");
     },
   },
 };

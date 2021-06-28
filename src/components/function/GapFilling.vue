@@ -1,5 +1,5 @@
 <template>
-  <div class="radio">
+  <div class="gap">
     <p class="text">标题:</p>
     <van-field
       rows="3"
@@ -9,24 +9,25 @@
       clearable
       class="textarea"
     />
-    <p class="text">选项</p>
-    <van-radio-group v-model="radio" class="select">
-      <van-cell-group>
-        <el-input placeholder="输入选项" prefix-icon="el-icon-remove" v-model="input1"></el-input>
-        <el-input placeholder="输入选项" prefix-icon="el-icon-remove" v-model="input2"></el-input>
-      </van-cell-group>
-    </van-radio-group>
+
     <div class="chose">
       <p class="text">设置</p>
-      <van-cell center title="此题目必须回答">
-        <template #right-icon>
-          <van-switch v-model="checked" size="24" />
+
+      <van-cell center title="文本验证">
+        <template>
+          <span @select="least">无></span>
         </template>
       </van-cell>
 
-      <van-cell center title="一行显示选项数">
+      <van-cell center title="输入框行数">
         <template>
-          <span @click="select">1></span>
+          <span @click="max">2></span>
+        </template>
+      </van-cell>
+
+      <van-cell center title="此题目必须回答">
+        <template #right-icon>
+          <van-switch v-model="checked" size="24" />
         </template>
       </van-cell>
 
@@ -41,41 +42,31 @@
           <span @click="jump">未设置></span>
         </template>
       </van-cell>
-
-      <van-cell center title="引用设置">
-        <template>
-          <span @click="have">未设置></span>
-        </template>
-      </van-cell>
     </div>
     <div style="margin: 16px;">
       <van-button round block type="info" native-type="submit" @click="Post">确定</van-button>
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  name: "Single-choice",
+  name: "Gap-filling",
   data() {
     return {
-      radio: "1",
-      checked: true,
       text: "",
-      input1: "",
-      input2: "",
+      checked: true,
     };
   },
   methods: {
-    select() {},
+    least() {},
+    max() {},
     set() {
-      // alert('第一题不能显示条件')
       this.$dialog
         .alert({
           message: "第一题不能设置显示条件",
         })
-        .then(() => {
-          // on close
-        });
+        .then(() => {});
     },
     jump() {
       this.$dialog
@@ -86,19 +77,10 @@ export default {
           // on close
         });
     },
-    have() {
-      this.$dialog
-        .alert({
-          message: " 第一题不能进行引用设置!",
-        })
-        .then(() => {
-          // on close
-        });
-    },
     Post() {
       this.$dialog
         .alert({
-          message: " 请至少输入两个选项内容",
+          message: " 请输入题目名称",
         })
         .then(() => {
           // on close
@@ -108,25 +90,25 @@ export default {
 };
 </script>
 
-<style>
-.radio {
+<style scoped>
+.gap {
   padding: 0 20px;
 }
-.radio .text {
+.gap .text {
   font-size: 12px;
   color: #abafb2;
 }
-.radio .textarea {
+.gap .textarea {
   border: 1px solid #dcdee0;
   font-size: 16px;
 }
-.radio .chose {
+.gap .chose {
   padding-top: 20px;
 }
-.radio .van-cell__title {
+.gap .van-cell__title {
   font-size: 16px;
 }
-.radio .van-cell::after {
+.gap .van-cell::after {
   border-bottom: none;
 }
 </style>

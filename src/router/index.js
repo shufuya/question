@@ -7,6 +7,9 @@ import Mine from '../components/mine.vue'
 import Creation from '../components/Creation.vue'
 import CreateTable from '../components/CreateTable.vue'
 import SingleChoice from '../components/function/SingleChoice.vue'
+import MultipleChoice from '../components/function/MultipleChoice.vue'
+import GapFilling from '../components/function/GapFilling.vue'
+import Gun from '../components/function/Gun.vue'
 Vue.use(VueRouter)
 
 
@@ -81,6 +84,21 @@ const routes = [{
 		path: '/single-choice',
 		name: 'SingleChoice',
 		component: SingleChoice
+	},
+	{
+		path: '/multiple-choice',
+		name: 'MultipleChoice',
+		component: MultipleChoice
+	},
+	{
+		path: '/gap-gilling',
+		name: 'GapFilling',
+		component: GapFilling
+	},
+	{
+		path: '/gun',
+		name: 'Gun',
+		component: Gun
 	}
 ]
 

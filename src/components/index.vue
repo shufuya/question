@@ -20,8 +20,12 @@
         <h1>嘟噜噜</h1>
         <h4>欢迎使用</h4>
         <van-button round type="info" to="/menu">免费试用</van-button>
+        <div @click="money">赞助</div>
       </div>
     </div>
+    <van-overlay :show="aaa" @click="aaa= false">
+      <van-image width="100%" height="100%" :src="require('../assets/images/1.jpg')"></van-image>
+    </van-overlay>
   </div>
 </template>
 
@@ -30,6 +34,7 @@ export default {
   name: "index",
   data() {
     return {
+      aaa: false,
       show: false,
       value1: null,
       option1: [
@@ -41,6 +46,7 @@ export default {
   },
   methods: {
     showPopup() {
+      this.value1 = null;
       this.show = true;
     },
     to(value) {
@@ -52,11 +58,29 @@ export default {
           break;
       }
     },
+    money() {
+      this.aaa = true;
+    },
   },
 };
 </script>
 
 <style scoped>
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+}
+.van-dropdown-menu {
+  margin-top: 21px;
+}
 #box {
   height: 100vh;
   position: absolute;

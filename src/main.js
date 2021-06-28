@@ -8,6 +8,9 @@ import 'vant/lib/index.css';
 import './assets/stylesheets/base.css'
 import 'font-awesome/css/font-awesome.css'
 import axios from '../http.js'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 Vue.use(Vant);
 Vue.use(vueCookie)
 Vue.config.productionTip = false
